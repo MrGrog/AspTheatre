@@ -78,6 +78,11 @@ namespace Theatre_test
                 Label6.Visible = false;
             }
         }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class Actor
     {

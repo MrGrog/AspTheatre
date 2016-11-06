@@ -13,23 +13,24 @@ namespace Theatre_test.Account
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
+            if (String.Equals(Password.Text, ConfirmPassword.Text))
             {
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
+                using (TheatreEntitiesNew te = new TheatreEntitiesNew())
+                {
+                    Users us = new Users { Name = Name.Text, Surname = Surname.Text, Address = Address.Text, Pin = Password.Text, E_mail = Email.Text, Type = false };
 
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    te.Users.Add(us);
+                    te.SaveChanges();
+
+                    var users = te.Users.ToList();
+
+                    ErrorMessage.Text = users[users.Count - 1].Name + " added";
+                }
+
             }
             else 
             {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                ErrorMessage.Text = "passwords not equals";
             }
         }
     }
