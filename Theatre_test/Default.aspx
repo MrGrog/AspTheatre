@@ -6,7 +6,7 @@
         Театральна каса
     </h1>
     <p class="text-left">
-        <asp:LinkButton ID="LinkButton1" runat="server" >Link GitHub Theatre </asp:LinkButton>
+        <a href="https://github.com/MrGrog/AspTheatre.git" target="_blank">Link GitHub Theatre </a>
 </p>
 
 </asp:Content>
