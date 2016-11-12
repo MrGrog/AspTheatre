@@ -25,48 +25,41 @@ namespace Theatre_test.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
-            //if (TextBox1.Visible == true && String.Equals(TextBox5.Text, TextBox4.Text))
-            //{
-            //    using (TheatreEntitiesNew te = new TheatreEntitiesNew())
-            //    {
-            //        Users us = new Users { Name = TextBox1.Text, Surname = TextBox2.Text, Address = TextBox6.Text, Pin = TextBox5.Text, E_mail = TextBox3.Text, Type = false };
-
-            //        te.Users.Add(us);
-            //        te.SaveChanges();
-
-            //        var users = te.Users.ToList();
-
-            //        Label7.Text = users[users.Count - 1].Name + " added";
-            //    }
-
-            //}
-            //else if (TextBox1.Visible == true && String.Equals(TextBox5.Text, TextBox4.Text) == false)
-            //{
-            //    Label7.Text = "passwords not identical";
-            //}
-            //else
-            //{
                 using (TheatreEntitiesNew te = new TheatreEntitiesNew())
                 {
-                    //var users = te.Users;
-                    foreach (var u in te.Users)
+                var users = te.Users;
+                foreach (var u in users)
+                {
+                    if ((String.Equals(Email.Text, u.E_mail) && String.Equals(Password.Text, u.Pin)) && u.Type == true)
                     {
-                        if ((String.Equals(Email.Text, u.E_mail) && String.Equals(Password.Text, u.Pin)))
-                        {
+                        FailureText.Text = String.Format("User: {0} type: {1}", u.E_mail, u.Type);
+                        ErrorMessage.Visible = true;
+                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["Admin"], Response);
+
+                        //Server.Transfer("Admin.aspx", true);
+                        break;
+
+                    }
+                    else if((String.Equals(Email.Text, u.E_mail) && String.Equals(Password.Text, u.Pin)))
+                    {
                         FailureText.Text = String.Format("User: {0} name: {1}", u.E_mail, u.Name);
                         ErrorMessage.Visible = true;
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["About"], Response);
+                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["Contact"], Response);
+                        Server.Transfer("Contact.aspx", true);
+                        Users temp = u;
                         break;
-                        }
-                        else
+                    }
+                    
+                    else if (String.Equals(Email.Text, u.E_mail) || String.Equals(Password.Text, u.Pin))
+                    {
                         FailureText.Text = "Invalid login attempt";
-                                ErrorMessage.Visible = true;
-                                break;
+                        ErrorMessage.Visible = true;
+                        break;
+                    }
+
+                    }
 
                 }
-
-            }
-            
         }
     }
 }
