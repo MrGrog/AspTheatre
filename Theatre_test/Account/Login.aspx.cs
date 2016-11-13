@@ -10,6 +10,7 @@ namespace Theatre_test.Account
 {
     public partial class Login : Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
@@ -34,9 +35,9 @@ namespace Theatre_test.Account
                     {
                         FailureText.Text = String.Format("User: {0} type: {1}", u.E_mail, u.Type);
                         ErrorMessage.Visible = true;
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["Admin"], Response);
+                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["Admin"], Response);
 
-                        //Server.Transfer("Admin.aspx", true);
+                        Server.Transfer("Admin.aspx", true);
                         break;
 
                     }
@@ -44,7 +45,7 @@ namespace Theatre_test.Account
                     {
                         FailureText.Text = String.Format("User: {0} name: {1}", u.E_mail, u.Name);
                         ErrorMessage.Visible = true;
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["Contact"], Response);
+                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["Contact"], Response);
                         Server.Transfer("Contact.aspx", true);
                         Users temp = u;
                         break;
