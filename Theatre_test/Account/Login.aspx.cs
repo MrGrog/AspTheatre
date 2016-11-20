@@ -46,7 +46,7 @@ namespace Theatre_test.Account
                         FailureText.Text = String.Format("User: {0} name: {1}", u.E_mail, u.Name);
                         ErrorMessage.Visible = true;
                         //IdentityHelper.RedirectToReturnUrl(Request.QueryString["Contact"], Response);
-                        Server.Transfer("Contact.aspx", true);
+                        Server.Transfer("PlaceMarket.aspx", true);
                         Users temp = u;
                         break;
                     }
