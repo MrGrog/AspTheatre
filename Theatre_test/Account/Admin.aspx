@@ -2,7 +2,7 @@
 
 <%@ Register assembly="Syncfusion.EJ.Web, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" namespace="Syncfusion.JavaScript.Web" tagprefix="ej" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<script src="../Scripts/MyScripts/Admin.js"></script>
+    <script src="../Scripts/MyScripts/Admin.js"></script>
     
     <h1>
         Адміністратор
@@ -16,7 +16,7 @@
         <asp:TextBox ID="TextBox1" runat="server" Text="назва вистави"></asp:TextBox>
     </p>
     <p>
-        <asp:TextBox ID="TextBox2" runat="server" Height="60px" Width="206px">опис вистави</asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" Height="60px" Width="206px" Rows="4" TextMode="MultiLine">опис вистави</asp:TextBox>
     </p>
     <p>
         <asp:Label ID="Actors" runat="server">Актори (потрібне відмітити)</asp:Label>
@@ -25,7 +25,7 @@
         <asp:CheckBoxList ID="ActorsCheck" runat="server" Height="62px" Width="341px" ></asp:CheckBoxList>
     </p>
     <p>
-        <asp:Button ID="AddSpectacle" runat="server" Value="Додати виставу" CssClass="btn btn-default" OnClientClick="setspectacle()" />
+        <asp:Button ID="AddSpectacle" runat="server" Text="Додати виставу" CssClass="btn btn-default" OnClientClick="setspectacle()" />
     </p>
     <p>
         &nbsp;</p>
